@@ -26,7 +26,7 @@
       --radius-lg: 12px;
       --radius-xl: 16px;
       --nav-height: 64px;
-      --sidebar-width: 240px;
+      --sidebar-width: 220px;
     }
 
     * {
@@ -181,7 +181,7 @@
       width: var(--sidebar-width);
       background: var(--bg-primary);
       border-right: 1px solid var(--border);
-      padding: 24px 16px;
+      padding: 24px 0;
       position: fixed;
       top: var(--nav-height);
       left: 0;
@@ -189,36 +189,19 @@
       overflow-y: auto;
     }
 
-    .sidebar-section {
-      margin-bottom: 24px;
-    }
-
-    .sidebar-title {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-tertiary);
-      padding: 0 12px;
-      margin-bottom: 8px;
-    }
-
     .sidebar-nav {
       display: flex;
       flex-direction: column;
-      gap: 2px;
     }
 
     .sidebar-link {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-secondary);
+      padding: 10px 24px;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-primary);
       text-decoration: none;
-      border-radius: 8px;
       transition: all 0.15s ease;
       cursor: pointer;
       border: none;
@@ -226,37 +209,31 @@
       width: 100%;
       text-align: left;
       font-family: inherit;
+      position: relative;
     }
 
     .sidebar-link:hover {
       background: var(--bg-secondary);
-      color: var(--text-primary);
     }
 
     .sidebar-link.active {
-      background: var(--bg-secondary);
-      color: var(--text-primary);
       font-weight: 600;
+      background: var(--bg-secondary);
     }
 
     .sidebar-link.active::before {
       content: '';
-      width: 4px;
-      height: 4px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
       background: var(--text-primary);
-      border-radius: 50%;
-      margin-right: -4px;
     }
 
-    .sidebar-link svg {
-      width: 18px;
-      height: 18px;
-      color: var(--text-tertiary);
-      flex-shrink: 0;
-    }
-
-    .sidebar-link.active svg {
-      color: var(--text-primary);
+    .sidebar-link .icon {
+      margin-right: 12px;
+      font-size: 14px;
     }
 
     /* Main Content */
@@ -331,7 +308,7 @@
       border-radius: 6px;
     }
 
-    /* Platform Pills */
+    /* Platform Pills - No border style */
     .platform-pills {
       display: flex;
       gap: 8px;
@@ -340,10 +317,10 @@
 
     .platform-pill {
       padding: 6px 14px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      background: var(--bg-primary);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-primary);
+      background: transparent;
       border: 1px solid var(--border);
       border-radius: 6px;
       cursor: pointer;
@@ -352,21 +329,19 @@
     }
 
     .platform-pill:hover {
-      border-color: var(--border-dark);
-      color: var(--text-primary);
+      background: var(--bg-secondary);
     }
 
     .platform-pill.active {
-      background: var(--text-primary);
-      color: white;
-      border-color: var(--text-primary);
+      background: var(--bg-secondary);
+      border-color: var(--border-dark);
     }
 
     /* Apps Grid */
     .apps-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
+      gap: 8px;
     }
 
     /* App Card */
@@ -374,9 +349,8 @@
       display: flex;
       align-items: flex-start;
       gap: 16px;
-      padding: 20px;
+      padding: 16px;
       background: var(--bg-primary);
-      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       cursor: pointer;
       transition: all 0.2s ease;
@@ -384,9 +358,7 @@
     }
 
     .app-card:hover {
-      border-color: var(--border-dark);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
+      background: var(--bg-secondary);
     }
 
     .app-card.hidden {
@@ -415,7 +387,7 @@
       font-weight: 700;
       padding: 2px 6px;
       border-radius: 4px;
-      text-transform: uppercase;
+      text-transform: capitalize;
     }
 
     .app-content {
@@ -433,22 +405,7 @@
     .app-description {
       font-size: 13px;
       color: var(--text-secondary);
-      margin-bottom: 8px;
       line-height: 1.4;
-    }
-
-    .app-rating {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-
-    .app-rating svg {
-      width: 14px;
-      height: 14px;
-      color: var(--text-tertiary);
     }
 
     /* Icon Gradients */
@@ -555,40 +512,23 @@
   <div class="layout">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <div class="sidebar-section">
-        <nav class="sidebar-nav">
-          <button class="sidebar-link active" data-filter="all">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-            Discover
-          </button>
-          <button class="sidebar-link" data-filter="all">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-            All apps
-          </button>
-        </nav>
-      </div>
-
-      <div class="sidebar-section">
-        <div class="sidebar-title">Categories</div>
-        <nav class="sidebar-nav">
-          <button class="sidebar-link" data-filter="work">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            Work
-          </button>
-          <button class="sidebar-link" data-filter="create">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-            Create
-          </button>
-          <button class="sidebar-link" data-filter="develop">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            Develop
-          </button>
-          <button class="sidebar-link" data-filter="life">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            Life
-          </button>
-        </nav>
-      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-link" data-filter="all">
+          <span class="icon">✏️</span> Discover
+        </button>
+        <button class="sidebar-link active" data-filter="all">
+          <span class="icon">◆</span> All apps
+        </button>
+        <button class="sidebar-link" data-filter="productivity">
+          Productivity
+        </button>
+        <button class="sidebar-link" data-filter="design">
+          Design
+        </button>
+        <button class="sidebar-link" data-filter="life">
+          Life
+        </button>
+      </nav>
     </aside>
 
     <!-- Main Content -->
@@ -610,14 +550,14 @@
       </div>
 
       <div class="platform-pills">
-        <button class="platform-pill active">All</button>
-        <button class="platform-pill">Web</button>
-        <button class="platform-pill">Desktop</button>
-        <button class="platform-pill">Mobile</button>
+        <button class="platform-pill active" data-filter="all">All</button>
+        <button class="platform-pill" data-filter="productivity">Productivity</button>
+        <button class="platform-pill" data-filter="design">Design</button>
+        <button class="platform-pill" data-filter="life">Life</button>
       </div>
 
       <div class="apps-grid" id="appsGrid">
-        <div class="app-card" data-category="work">
+        <div class="app-card" data-category="productivity">
           <div class="app-icon icon-pink">
             <span class="app-badge">Hot</span>
             📅
@@ -625,14 +565,10 @@
           <div class="app-content">
             <h3 class="app-name">PTO Planner</h3>
             <p class="app-description">Plan and track your paid time off with ease</p>
-            <div class="app-rating">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
-              97%
-            </div>
           </div>
         </div>
 
-        <div class="app-card" data-category="develop">
+        <div class="app-card" data-category="productivity">
           <div class="app-icon icon-blue">
             <span class="app-badge">Hot</span>
             🔍
@@ -640,14 +576,10 @@
           <div class="app-content">
             <h3 class="app-name">Image Text Scraper</h3>
             <p class="app-description">Extract text from images using OCR technology</p>
-            <div class="app-rating">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
-              98%
-            </div>
           </div>
         </div>
 
-        <div class="app-card" data-category="work">
+        <div class="app-card" data-category="productivity">
           <div class="app-icon icon-green">
             <span class="app-badge">Hot</span>
             ✅
@@ -655,14 +587,10 @@
           <div class="app-content">
             <h3 class="app-name">Tie Batch Checker</h3>
             <p class="app-description">Validate and check batches efficiently</p>
-            <div class="app-rating">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
-              99%
-            </div>
           </div>
         </div>
 
-        <div class="app-card" data-category="create">
+        <div class="app-card" data-category="design">
           <div class="app-icon icon-orange">
             <span class="app-badge">Hot</span>
             🎨
@@ -670,10 +598,6 @@
           <div class="app-content">
             <h3 class="app-name">Designer Co-Pilot</h3>
             <p class="app-description">AI-powered design assistant for creatives</p>
-            <div class="app-rating">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
-              98%
-            </div>
           </div>
         </div>
 
@@ -684,10 +608,6 @@
           <div class="app-content">
             <h3 class="app-name">Public Speaking Tool</h3>
             <p class="app-description">Practice and improve your presentation skills</p>
-            <div class="app-rating">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
-              97%
-            </div>
           </div>
         </div>
       </div>
@@ -737,6 +657,31 @@
         sidebarLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
         activeFilter = link.dataset.filter;
+        
+        // Sync platform pills
+        platformPills.forEach(p => {
+          p.classList.toggle('active', p.dataset.filter === activeFilter);
+        });
+        
+        filterCards();
+      });
+    });
+
+    // Platform pills filter
+    platformPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        platformPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        activeFilter = pill.dataset.filter;
+        
+        // Sync sidebar
+        sidebarLinks.forEach(l => {
+          if (l.dataset.filter === activeFilter) {
+            sidebarLinks.forEach(s => s.classList.remove('active'));
+            l.classList.add('active');
+          }
+        });
+        
         filterCards();
       });
     });
@@ -746,14 +691,6 @@
       btn.addEventListener('click', () => {
         sortBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-      });
-    });
-
-    // Platform pills
-    platformPills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        platformPills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
       });
     });
 
