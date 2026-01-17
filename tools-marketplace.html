@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f8f8;
+      --bg-tertiary: #f0f0f0;
+      --bg-sidebar: #fafafa;
+      --text-primary: #1a1a1a;
+      --text-secondary: #6b6b6b;
+      --text-tertiary: #9a9a9a;
+      --accent: #e91e63;
+      --accent-light: #fce4ec;
+      --border: #e8e8e8;
+      --border-dark: #d0d0d0;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --nav-height: 64px;
+      --sidebar-width: 240px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', ui-sans-serif, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.5;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--bg-primary);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-height);
+      padding: 0 32px;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text-primary);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+    }
+
+    .nav-search {
+      flex: 1;
+      max-width: 480px;
+      position: relative;
+    }
+
+    .nav-search input {
+      width: 100%;
+      padding: 10px 16px 10px 44px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+    }
+
+    .nav-search input::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    .nav-search input:focus {
+      outline: none;
+      border-color: var(--border-dark);
+      background: var(--bg-primary);
+    }
+
+    .nav-search svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-tertiary);
+      width: 18px;
+      height: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+    }
+
+    .nav-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .nav-link-primary {
+      background: var(--text-primary);
+      color: white;
+    }
+
+    .nav-link-primary:hover {
+      background: #333;
+      color: white;
+    }
+
+    /* Main Layout */
+    .layout {
+      display: flex;
+      padding-top: var(--nav-height);
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-primary);
+      border-right: 1px solid var(--border);
+      padding: 24px 16px;
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      bottom: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-section {
+      margin-bottom: 24px;
+    }
+
+    .sidebar-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-tertiary);
+      padding: 0 12px;
+      margin-bottom: 8px;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+    }
+
+    .sidebar-link:hover {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+
+    .sidebar-link.active {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .sidebar-link.active::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--text-primary);
+      border-radius: 50%;
+      margin-right: -4px;
+    }
+
+    .sidebar-link svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-tertiary);
+      flex-shrink: 0;
+    }
+
+    .sidebar-link.active svg {
+      color: var(--text-primary);
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      padding: 32px 40px;
+      max-width: calc(100% - var(--sidebar-width));
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-tertiary);
+      margin-bottom: 24px;
+    }
+
+    .breadcrumb a {
+      color: var(--text-secondary);
+      text-decoration: underline;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--text-primary);
+    }
+
+    /* Page Header */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .page-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .sort-buttons {
+      display: flex;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .sort-btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+
+    .sort-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .sort-btn.active {
+      background: var(--text-primary);
+      color: white;
+      border-radius: 6px;
+    }
+
+    /* Platform Pills */
+    .platform-pills {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .platform-pill {
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .platform-pill:hover {
+      border-color: var(--border-dark);
+      color: var(--text-primary);
+    }
+
+    .platform-pill.active {
+      background: var(--text-primary);
+      color: white;
+      border-color: var(--text-primary);
+    }
+
+    /* Apps Grid */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    /* App Card */
+    .app-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .app-card:hover {
+      border-color: var(--border-dark);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .app-card.hidden {
+      display: none;
+    }
+
+    .app-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .app-badge {
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      background: #ff4757;
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .app-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .app-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .app-description {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .app-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .app-rating svg {
+      width: 14px;
+      height: 14px;
+      color: var(--text-tertiary);
+    }
+
+    /* Icon Gradients */
+    .icon-pink { background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); }
+    .icon-blue { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .icon-green { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+    .icon-orange { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .icon-purple { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    .icon-teal { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+    .icon-yellow { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+    .icon-indigo { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-secondary);
+      display: none;
+    }
+
+    .empty-state.visible {
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 24px 20px;
+      }
+
+      .apps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-search {
+        display: none;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .app-card:not(.hidden) {
+      animation: fadeIn 0.3s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">⚡</div>
+        Tools Hub
+      </a>
+      
+      <div class="nav-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input type="text" placeholder="Search for tools" id="searchInput">
+      </div>
+
+      <div class="nav-links">
+        <a href="#" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          Contributors
+        </a>
+        <a href="#" class="nav-link nav-link-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+            <line x1="6" y1="1" x2="6" y2="4"/>
+            <line x1="10" y1="1" x2="10" y2="4"/>
+            <line x1="14" y1="1" x2="14" y2="4"/>
+          </svg>
+          Buy Us Coffee
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <nav class="sidebar-nav">
+          <button class="sidebar-link active" data-filter="all">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            Discover
+          </button>
+          <button class="sidebar-link" data-filter="all">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            All apps
+          </button>
+        </nav>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Categories</div>
+        <nav class="sidebar-nav">
+          <button class="sidebar-link" data-filter="work">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Work
+          </button>
+          <button class="sidebar-link" data-filter="create">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+            Create
+          </button>
+          <button class="sidebar-link" data-filter="develop">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Develop
+          </button>
+          <button class="sidebar-link" data-filter="life">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Life
+          </button>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <div class="breadcrumb">
+        <a href="#">Home</a>
+        <span>›</span>
+        <a href="#">Marketplace</a>
+        <span>›</span>
+        <span>All apps</span>
+      </div>
+
+      <div class="page-header">
+        <h1 class="page-title">All apps</h1>
+        <div class="sort-buttons">
+          <button class="sort-btn active">Top rated</button>
+          <button class="sort-btn">New</button>
+        </div>
+      </div>
+
+      <div class="platform-pills">
+        <button class="platform-pill active">All</button>
+        <button class="platform-pill">Web</button>
+        <button class="platform-pill">Desktop</button>
+        <button class="platform-pill">Mobile</button>
+      </div>
+
+      <div class="apps-grid" id="appsGrid">
+        <div class="app-card" data-category="work">
+          <div class="app-icon icon-pink">
+            <span class="app-badge">Hot</span>
+            📅
+          </div>
+          <div class="app-content">
+            <h3 class="app-name">PTO Planner</h3>
+            <p class="app-description">Plan and track your paid time off with ease</p>
+            <div class="app-rating">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+              97%
+            </div>
+          </div>
+        </div>
+
+        <div class="app-card" data-category="develop">
+          <div class="app-icon icon-blue">
+            <span class="app-badge">Hot</span>
+            🔍
+          </div>
+          <div class="app-content">
+            <h3 class="app-name">Image Text Scraper</h3>
+            <p class="app-description">Extract text from images using OCR technology</p>
+            <div class="app-rating">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+              98%
+            </div>
+          </div>
+        </div>
+
+        <div class="app-card" data-category="work">
+          <div class="app-icon icon-green">
+            <span class="app-badge">Hot</span>
+            ✅
+          </div>
+          <div class="app-content">
+            <h3 class="app-name">Tie Batch Checker</h3>
+            <p class="app-description">Validate and check batches efficiently</p>
+            <div class="app-rating">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+              99%
+            </div>
+          </div>
+        </div>
+
+        <div class="app-card" data-category="create">
+          <div class="app-icon icon-orange">
+            <span class="app-badge">Hot</span>
+            🎨
+          </div>
+          <div class="app-content">
+            <h3 class="app-name">Designer Co-Pilot</h3>
+            <p class="app-description">AI-powered design assistant for creatives</p>
+            <div class="app-rating">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+              98%
+            </div>
+          </div>
+        </div>
+
+        <div class="app-card" data-category="life">
+          <div class="app-icon icon-purple">
+            🎤
+          </div>
+          <div class="app-content">
+            <h3 class="app-name">Public Speaking Tool</h3>
+            <p class="app-description">Practice and improve your presentation skills</p>
+            <div class="app-rating">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+              97%
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty-state" id="emptyState">
+        <p>No tools found.</p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const appCards = document.querySelectorAll('.app-card');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    const sortBtns = document.querySelectorAll('.sort-btn');
+    const platformPills = document.querySelectorAll('.platform-pill');
+    const emptyState = document.getElementById('emptyState');
+
+    let activeFilter = 'all';
+
+    function filterCards() {
+      const searchTerm = searchInput.value.toLowerCase();
+      let visibleCount = 0;
+
+      appCards.forEach(card => {
+        const name = card.querySelector('.app-name').textContent.toLowerCase();
+        const description = card.querySelector('.app-description').textContent.toLowerCase();
+        const category = card.dataset.category;
+
+        const matchesSearch = name.includes(searchTerm) || description.includes(searchTerm);
+        const matchesFilter = activeFilter === 'all' || category === activeFilter;
+
+        if (matchesSearch && matchesFilter) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      emptyState.classList.toggle('visible', visibleCount === 0);
+    }
+
+    // Sidebar filter
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        sidebarLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        activeFilter = link.dataset.filter;
+        filterCards();
+      });
+    });
+
+    // Sort buttons
+    sortBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sortBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Platform pills
+    platformPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        platformPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+      });
+    });
+
+    // Search
+    searchInput.addEventListener('input', filterCards);
+
+    // Card clicks
+    appCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const toolName = card.querySelector('.app-name').textContent;
+        console.log(`Clicked: ${toolName}`);
+      });
+    });
+  </script>
+</body>
+</html>
