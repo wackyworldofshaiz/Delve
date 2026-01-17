@@ -55,38 +55,6 @@
       display: block;
     }
 
-    .search-box {
-      flex: 1;
-      max-width: 500px;
-      position: relative;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 10px 16px 10px 44px;
-      background: #f8f8f8;
-      border: 1px solid #e8e8e8;
-      border-radius: 50px;
-      font-size: 14px;
-      font-family: inherit;
-      color: #1a1a1a;
-    }
-
-    .search-box input:focus {
-      outline: none;
-      border-color: #d0d0d0;
-    }
-
-    .search-box svg {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #9a9a9a;
-      width: 18px;
-      height: 18px;
-    }
-
     .nav-links {
       display: flex;
       align-items: center;
@@ -298,11 +266,19 @@
       position: relative;
       flex-shrink: 0;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
     }
 
     .app-card:hover .app-icon {
       transform: scale(1.1);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .app-icon-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
     }
 
     .app-badge {
@@ -328,13 +304,6 @@
       color: #6b6b6b;
       line-height: 1.5;
     }
-
-    /* Icon Colors */
-    .icon-pink { background: linear-gradient(135deg, #ffb3ba, #ff8a9b); }
-    .icon-purple { background: linear-gradient(135deg, #c3aed6, #9b7fc7); }
-    .icon-green { background: linear-gradient(135deg, #98d9a8, #5cb85c); }
-    .icon-orange { background: linear-gradient(135deg, #ffcc80, #ff9800); }
-    .icon-blue { background: linear-gradient(135deg, #a8d4ff, #64b5f6); }
 
     /* Empty State */
     .empty-state {
@@ -362,10 +331,6 @@
         grid-template-columns: 1fr;
       }
 
-      .search-box {
-        display: none;
-      }
-
       .page-header {
         flex-direction: column;
         align-items: flex-start;
@@ -381,14 +346,6 @@
       <a href="#" class="logo">
         <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/delve.png" alt="Delve" class="logo-icon">
       </a>
-      
-      <div class="search-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.3-4.3"></path>
-        </svg>
-        <input type="text" placeholder="Search for tools" id="searchInput">
-      </div>
 
       <div class="nav-links">
         <a href="#" class="nav-link">
@@ -412,7 +369,7 @@
   <div class="container">
     <aside class="sidebar">
       <button class="sidebar-link active" data-filter="all">
-        <span class="icon">◆</span>All apps
+        All apps
       </button>
       <button class="sidebar-link" data-filter="productivity">
         Productivity
@@ -447,9 +404,9 @@
 
       <div class="apps-grid" id="appsGrid">
         <div class="app-card" data-category="productivity">
-          <div class="app-icon icon-pink">
+          <div class="app-icon">
             <span class="app-badge">Hot</span>
-            📅
+            <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/1.avif" alt="PTO Planner" class="app-icon-img">
           </div>
           <div class="app-content">
             <h3 class="app-name">PTO Planner</h3>
@@ -458,9 +415,9 @@
         </div>
 
         <div class="app-card" data-category="productivity">
-          <div class="app-icon icon-purple">
+          <div class="app-icon">
             <span class="app-badge">Hot</span>
-            🔍
+            <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/2.avif" alt="Image Text Scraper" class="app-icon-img">
           </div>
           <div class="app-content">
             <h3 class="app-name">Image Text Scraper</h3>
@@ -469,9 +426,9 @@
         </div>
 
         <div class="app-card" data-category="productivity">
-          <div class="app-icon icon-green">
+          <div class="app-icon">
             <span class="app-badge">Hot</span>
-            ✅
+            <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/3.avif" alt="Tie Batch Checker" class="app-icon-img">
           </div>
           <div class="app-content">
             <h3 class="app-name">Tie Batch Checker</h3>
@@ -480,9 +437,9 @@
         </div>
 
         <div class="app-card" data-category="design">
-          <div class="app-icon icon-orange">
+          <div class="app-icon">
             <span class="app-badge">Hot</span>
-            🎨
+            <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/4.avif" alt="Designer Co-Pilot" class="app-icon-img">
           </div>
           <div class="app-content">
             <h3 class="app-name">Designer Co-Pilot</h3>
@@ -491,8 +448,8 @@
         </div>
 
         <div class="app-card" data-category="life">
-          <div class="app-icon icon-blue">
-            🎤
+          <div class="app-icon">
+            <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/5.avif" alt="Public Speaking Tool" class="app-icon-img">
           </div>
           <div class="app-content">
             <h3 class="app-name">Public Speaking Tool</h3>
@@ -508,7 +465,6 @@
   </div>
 
   <script>
-    const searchInput = document.getElementById('searchInput');
     const appCards = document.querySelectorAll('.app-card');
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
     const sortBtns = document.querySelectorAll('.sort-btn');
@@ -518,18 +474,13 @@
     let activeFilter = 'all';
 
     function filterCards() {
-      const searchTerm = searchInput.value.toLowerCase();
       let visibleCount = 0;
 
       appCards.forEach(card => {
-        const name = card.querySelector('.app-name').textContent.toLowerCase();
-        const description = card.querySelector('.app-description').textContent.toLowerCase();
         const category = card.dataset.category;
-
-        const matchesSearch = name.includes(searchTerm) || description.includes(searchTerm);
         const matchesFilter = activeFilter === 'all' || category === activeFilter;
 
-        if (matchesSearch && matchesFilter) {
+        if (matchesFilter) {
           card.classList.remove('hidden');
           visibleCount++;
         } else {
@@ -566,8 +517,6 @@
         btn.classList.add('active');
       });
     });
-
-    searchInput.addEventListener('input', filterCards);
   </script>
 </body>
 </html>
