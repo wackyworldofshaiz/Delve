@@ -12,19 +12,11 @@
       --bg-primary: #ffffff;
       --bg-secondary: #f8f8f8;
       --bg-tertiary: #f0f0f0;
-      --bg-sidebar: #fafafa;
       --text-primary: #1a1a1a;
       --text-secondary: #6b6b6b;
       --text-tertiary: #9a9a9a;
-      --accent: #e91e63;
-      --accent-light: #fce4ec;
       --border: #e8e8e8;
       --border-dark: #d0d0d0;
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-      --radius: 8px;
-      --radius-lg: 12px;
-      --radius-xl: 16px;
       --nav-height: 64px;
       --sidebar-width: 220px;
     }
@@ -35,11 +27,15 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
     body {
       font-family: 'Open Sans', ui-sans-serif, -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
-      min-height: 100vh;
       line-height: 1.5;
       font-size: 14px;
       -webkit-font-smoothing: antialiased;
@@ -55,7 +51,7 @@
       background: var(--bg-primary);
       border-bottom: 1px solid var(--border);
       height: var(--nav-height);
-      padding: 0 32px;
+      padding: 0 24px;
     }
 
     .nav-container {
@@ -65,7 +61,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 32px;
+      gap: 24px;
     }
 
     .nav-logo {
@@ -80,20 +76,20 @@
     }
 
     .nav-logo-icon {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 8px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .nav-search {
       flex: 1;
-      max-width: 480px;
+      max-width: 500px;
       position: relative;
     }
 
@@ -147,6 +143,7 @@
       text-decoration: none;
       border-radius: 8px;
       transition: all 0.15s ease;
+      white-space: nowrap;
     }
 
     .nav-link:hover {
@@ -157,6 +154,7 @@
     .nav-link svg {
       width: 16px;
       height: 16px;
+      flex-shrink: 0;
     }
 
     .nav-link-primary {
@@ -172,13 +170,14 @@
     /* Main Layout */
     .layout {
       display: flex;
-      padding-top: var(--nav-height);
       min-height: 100vh;
+      padding-top: var(--nav-height);
     }
 
     /* Sidebar */
     .sidebar {
       width: var(--sidebar-width);
+      min-width: var(--sidebar-width);
       background: var(--bg-primary);
       border-right: 1px solid var(--border);
       padding: 24px 0;
@@ -232,7 +231,7 @@
     }
 
     .sidebar-link .icon {
-      margin-right: 12px;
+      margin-right: 10px;
       font-size: 14px;
     }
 
@@ -241,7 +240,7 @@
       flex: 1;
       margin-left: var(--sidebar-width);
       padding: 32px 40px;
-      max-width: calc(100% - var(--sidebar-width));
+      min-width: 0;
     }
 
     /* Breadcrumb */
@@ -251,7 +250,7 @@
       gap: 8px;
       font-size: 13px;
       color: var(--text-tertiary);
-      margin-bottom: 24px;
+      margin-bottom: 16px;
     }
 
     .breadcrumb a {
@@ -269,8 +268,8 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 24px;
-      flex-wrap: wrap;
       gap: 16px;
+      flex-wrap: wrap;
     }
 
     .page-title {
@@ -284,6 +283,7 @@
       background: var(--bg-secondary);
       border-radius: 8px;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .sort-btn {
@@ -296,6 +296,7 @@
       cursor: pointer;
       font-family: inherit;
       transition: all 0.15s ease;
+      white-space: nowrap;
     }
 
     .sort-btn:hover {
@@ -308,31 +309,33 @@
       border-radius: 6px;
     }
 
-    /* Platform Pills - No border style */
-    .platform-pills {
+    /* Filter Pills */
+    .filter-pills {
       display: flex;
       gap: 8px;
       margin-bottom: 32px;
+      flex-wrap: wrap;
     }
 
-    .platform-pill {
-      padding: 6px 14px;
+    .filter-pill {
+      padding: 8px 16px;
       font-size: 14px;
       font-weight: 400;
       color: var(--text-primary);
       background: transparent;
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s ease;
       font-family: inherit;
+      white-space: nowrap;
     }
 
-    .platform-pill:hover {
+    .filter-pill:hover {
       background: var(--bg-secondary);
     }
 
-    .platform-pill.active {
+    .filter-pill.active {
       background: var(--bg-secondary);
       border-color: var(--border-dark);
     }
@@ -340,8 +343,20 @@
     /* Apps Grid */
     .apps-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 8px;
+    }
+
+    @media (max-width: 1200px) {
+      .apps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .apps-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* App Card */
@@ -351,7 +366,7 @@
       gap: 16px;
       padding: 16px;
       background: var(--bg-primary);
-      border-radius: var(--radius-lg);
+      border-radius: 12px;
       cursor: pointer;
       transition: all 0.2s ease;
       position: relative;
@@ -368,7 +383,7 @@
     .app-icon {
       width: 64px;
       height: 64px;
-      border-radius: var(--radius-lg);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -379,15 +394,14 @@
 
     .app-badge {
       position: absolute;
-      top: -4px;
-      left: -4px;
+      top: -6px;
+      left: -6px;
       background: #ff4757;
       color: white;
-      font-size: 9px;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 4px;
-      text-transform: capitalize;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
     }
 
     .app-content {
@@ -405,18 +419,15 @@
     .app-description {
       font-size: 13px;
       color: var(--text-secondary);
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     /* Icon Gradients */
-    .icon-pink { background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); }
-    .icon-blue { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-    .icon-green { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-    .icon-orange { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-    .icon-purple { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-    .icon-teal { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
-    .icon-yellow { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
-    .icon-indigo { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+    .icon-pink { background: linear-gradient(135deg, #ffb3ba 0%, #ff8a9b 100%); }
+    .icon-purple { background: linear-gradient(135deg, #c3aed6 0%, #9b7fc7 100%); }
+    .icon-green { background: linear-gradient(135deg, #98d9a8 0%, #5cb85c 100%); }
+    .icon-orange { background: linear-gradient(135deg, #ffcc80 0%, #ff9800 100%); }
+    .icon-blue { background: linear-gradient(135deg, #a8d4ff 0%, #64b5f6 100%); }
 
     /* Empty State */
     .empty-state {
@@ -431,40 +442,24 @@
     }
 
     /* Responsive */
-    @media (max-width: 900px) {
+    @media (max-width: 768px) {
       .sidebar {
         display: none;
       }
 
       .main {
         margin-left: 0;
-        max-width: 100%;
-        padding: 24px 20px;
-      }
-
-      .apps-grid {
-        grid-template-columns: 1fr;
+        padding: 24px 16px;
       }
 
       .nav-search {
         display: none;
       }
-    }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .app-card:not(.hidden) {
-      animation: fadeIn 0.3s ease forwards;
     }
   </style>
 </head>
@@ -549,11 +544,11 @@
         </div>
       </div>
 
-      <div class="platform-pills">
-        <button class="platform-pill active" data-filter="all">All</button>
-        <button class="platform-pill" data-filter="productivity">Productivity</button>
-        <button class="platform-pill" data-filter="design">Design</button>
-        <button class="platform-pill" data-filter="life">Life</button>
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="all">All</button>
+        <button class="filter-pill" data-filter="productivity">Productivity</button>
+        <button class="filter-pill" data-filter="design">Design</button>
+        <button class="filter-pill" data-filter="life">Life</button>
       </div>
 
       <div class="apps-grid" id="appsGrid">
@@ -569,7 +564,7 @@
         </div>
 
         <div class="app-card" data-category="productivity">
-          <div class="app-icon icon-blue">
+          <div class="app-icon icon-purple">
             <span class="app-badge">Hot</span>
             🔍
           </div>
@@ -602,7 +597,7 @@
         </div>
 
         <div class="app-card" data-category="life">
-          <div class="app-icon icon-purple">
+          <div class="app-icon icon-blue">
             🎤
           </div>
           <div class="app-content">
@@ -623,7 +618,7 @@
     const appCards = document.querySelectorAll('.app-card');
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
     const sortBtns = document.querySelectorAll('.sort-btn');
-    const platformPills = document.querySelectorAll('.platform-pill');
+    const filterPills = document.querySelectorAll('.filter-pill');
     const emptyState = document.getElementById('emptyState');
 
     let activeFilter = 'all';
@@ -658,8 +653,8 @@
         link.classList.add('active');
         activeFilter = link.dataset.filter;
         
-        // Sync platform pills
-        platformPills.forEach(p => {
+        // Sync filter pills
+        filterPills.forEach(p => {
           p.classList.toggle('active', p.dataset.filter === activeFilter);
         });
         
@@ -667,17 +662,17 @@
       });
     });
 
-    // Platform pills filter
-    platformPills.forEach(pill => {
+    // Filter pills
+    filterPills.forEach(pill => {
       pill.addEventListener('click', () => {
-        platformPills.forEach(p => p.classList.remove('active'));
+        filterPills.forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
         activeFilter = pill.dataset.filter;
         
-        // Sync sidebar
+        // Sync sidebar (select "All apps" for "all", otherwise match category)
         sidebarLinks.forEach(l => {
+          l.classList.remove('active');
           if (l.dataset.filter === activeFilter) {
-            sidebarLinks.forEach(s => s.classList.remove('active'));
             l.classList.add('active');
           }
         });
