@@ -8,77 +8,49 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-primary: #ffffff;
-      --bg-secondary: #f8f8f8;
-      --bg-tertiary: #f0f0f0;
-      --text-primary: #1a1a1a;
-      --text-secondary: #6b6b6b;
-      --text-tertiary: #9a9a9a;
-      --border: #e8e8e8;
-      --border-dark: #d0d0d0;
-      --nav-height: 64px;
-      --sidebar-width: 220px;
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
-      overflow-x: hidden;
-    }
-
     body {
-      font-family: 'Open Sans', ui-sans-serif, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
       line-height: 1.5;
       font-size: 14px;
-      -webkit-font-smoothing: antialiased;
     }
 
     /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: var(--bg-primary);
-      border-bottom: 1px solid var(--border);
-      height: var(--nav-height);
-      padding: 0 24px;
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e8e8e8;
+      padding: 14px 24px;
     }
 
-    .nav-container {
-      max-width: 1400px;
+    .navbar-inner {
+      max-width: 1200px;
       margin: 0 auto;
-      height: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
     }
 
-    .nav-logo {
+    .logo {
       display: flex;
       align-items: center;
       gap: 10px;
       font-weight: 700;
       font-size: 18px;
-      color: var(--text-primary);
+      color: #1a1a1a;
       text-decoration: none;
-      flex-shrink: 0;
     }
 
-    .nav-logo-icon {
+    .logo-icon {
       width: 36px;
       height: 36px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #667eea, #764ba2);
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -87,40 +59,34 @@
       font-size: 18px;
     }
 
-    .nav-search {
+    .search-box {
       flex: 1;
       max-width: 500px;
       position: relative;
     }
 
-    .nav-search input {
+    .search-box input {
       width: 100%;
       padding: 10px 16px 10px 44px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
+      background: #f8f8f8;
+      border: 1px solid #e8e8e8;
       border-radius: 50px;
       font-size: 14px;
       font-family: inherit;
-      color: var(--text-primary);
-      transition: all 0.2s ease;
+      color: #1a1a1a;
     }
 
-    .nav-search input::placeholder {
-      color: var(--text-tertiary);
-    }
-
-    .nav-search input:focus {
+    .search-box input:focus {
       outline: none;
-      border-color: var(--border-dark);
-      background: var(--bg-primary);
+      border-color: #d0d0d0;
     }
 
-    .nav-search svg {
+    .search-box svg {
       position: absolute;
       left: 16px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--text-tertiary);
+      color: #9a9a9a;
       width: 18px;
       height: 18px;
     }
@@ -129,7 +95,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      flex-shrink: 0;
+      margin-left: auto;
     }
 
     .nav-link {
@@ -139,69 +105,52 @@
       padding: 8px 16px;
       font-size: 14px;
       font-weight: 500;
-      color: var(--text-secondary);
+      color: #6b6b6b;
       text-decoration: none;
       border-radius: 8px;
-      transition: all 0.15s ease;
-      white-space: nowrap;
     }
 
     .nav-link:hover {
-      color: var(--text-primary);
-      background: var(--bg-secondary);
+      background: #f8f8f8;
+      color: #1a1a1a;
     }
 
     .nav-link svg {
       width: 16px;
       height: 16px;
-      flex-shrink: 0;
     }
 
     .nav-link-primary {
-      background: var(--text-primary);
-      color: white;
+      background: #1a1a1a;
+      color: #ffffff;
     }
 
     .nav-link-primary:hover {
-      background: #333;
-      color: white;
+      background: #333333;
+      color: #ffffff;
     }
 
     /* Main Layout */
-    .layout {
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
-      min-height: 100vh;
-      padding-top: var(--nav-height);
+      padding: 0 24px;
     }
 
     /* Sidebar */
     .sidebar {
-      width: var(--sidebar-width);
-      min-width: var(--sidebar-width);
-      background: var(--bg-primary);
-      border-right: 1px solid var(--border);
+      width: 200px;
       padding: 24px 0;
-      position: fixed;
-      top: var(--nav-height);
-      left: 0;
-      bottom: 0;
-      overflow-y: auto;
-    }
-
-    .sidebar-nav {
-      display: flex;
-      flex-direction: column;
+      border-right: 1px solid #e8e8e8;
     }
 
     .sidebar-link {
-      display: flex;
-      align-items: center;
-      padding: 10px 24px;
+      display: block;
+      padding: 10px 20px;
       font-size: 15px;
-      font-weight: 400;
-      color: var(--text-primary);
+      color: #1a1a1a;
       text-decoration: none;
-      transition: all 0.15s ease;
       cursor: pointer;
       border: none;
       background: none;
@@ -212,12 +161,12 @@
     }
 
     .sidebar-link:hover {
-      background: var(--bg-secondary);
+      background: #f8f8f8;
     }
 
     .sidebar-link.active {
       font-weight: 600;
-      background: var(--bg-secondary);
+      background: #f8f8f8;
     }
 
     .sidebar-link.active::before {
@@ -227,39 +176,29 @@
       top: 0;
       bottom: 0;
       width: 3px;
-      background: var(--text-primary);
+      background: #1a1a1a;
     }
 
     .sidebar-link .icon {
-      margin-right: 10px;
-      font-size: 14px;
+      margin-right: 8px;
     }
 
     /* Main Content */
-    .main {
+    .main-content {
       flex: 1;
-      margin-left: var(--sidebar-width);
-      padding: 32px 40px;
-      min-width: 0;
+      padding: 24px 0 24px 32px;
     }
 
     /* Breadcrumb */
     .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 8px;
       font-size: 13px;
-      color: var(--text-tertiary);
+      color: #9a9a9a;
       margin-bottom: 16px;
     }
 
     .breadcrumb a {
-      color: var(--text-secondary);
+      color: #6b6b6b;
       text-decoration: underline;
-    }
-
-    .breadcrumb a:hover {
-      color: var(--text-primary);
     }
 
     /* Page Header */
@@ -268,44 +207,33 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 24px;
-      gap: 16px;
-      flex-wrap: wrap;
     }
 
     .page-title {
       font-size: 32px;
       font-weight: 700;
-      color: var(--text-primary);
     }
 
     .sort-buttons {
       display: flex;
-      background: var(--bg-secondary);
+      background: #f8f8f8;
       border-radius: 8px;
-      overflow: hidden;
-      flex-shrink: 0;
     }
 
     .sort-btn {
       padding: 8px 16px;
       font-size: 13px;
       font-weight: 500;
-      color: var(--text-secondary);
+      color: #6b6b6b;
       background: none;
       border: none;
       cursor: pointer;
       font-family: inherit;
-      transition: all 0.15s ease;
-      white-space: nowrap;
-    }
-
-    .sort-btn:hover {
-      color: var(--text-primary);
     }
 
     .sort-btn.active {
-      background: var(--text-primary);
-      color: white;
+      background: #1a1a1a;
+      color: #ffffff;
       border-radius: 6px;
     }
 
@@ -314,49 +242,33 @@
       display: flex;
       gap: 8px;
       margin-bottom: 32px;
-      flex-wrap: wrap;
     }
 
     .filter-pill {
       padding: 8px 16px;
       font-size: 14px;
-      font-weight: 400;
-      color: var(--text-primary);
-      background: transparent;
-      border: 1px solid var(--border);
+      color: #1a1a1a;
+      background: #ffffff;
+      border: 1px solid #e8e8e8;
       border-radius: 8px;
       cursor: pointer;
-      transition: all 0.15s ease;
       font-family: inherit;
-      white-space: nowrap;
     }
 
     .filter-pill:hover {
-      background: var(--bg-secondary);
+      background: #f8f8f8;
     }
 
     .filter-pill.active {
-      background: var(--bg-secondary);
-      border-color: var(--border-dark);
+      background: #f8f8f8;
+      border-color: #d0d0d0;
     }
 
     /* Apps Grid */
     .apps-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 8px;
-    }
-
-    @media (max-width: 1200px) {
-      .apps-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 900px) {
-      .apps-grid {
-        grid-template-columns: 1fr;
-      }
     }
 
     /* App Card */
@@ -365,15 +277,12 @@
       align-items: flex-start;
       gap: 16px;
       padding: 16px;
-      background: var(--bg-primary);
       border-radius: 12px;
       cursor: pointer;
-      transition: all 0.2s ease;
-      position: relative;
     }
 
     .app-card:hover {
-      background: var(--bg-secondary);
+      background: #f8f8f8;
     }
 
     .app-card.hidden {
@@ -388,8 +297,8 @@
       align-items: center;
       justify-content: center;
       font-size: 28px;
-      flex-shrink: 0;
       position: relative;
+      flex-shrink: 0;
     }
 
     .app-badge {
@@ -397,43 +306,37 @@
       top: -6px;
       left: -6px;
       background: #ff4757;
-      color: white;
+      color: #ffffff;
       font-size: 10px;
       font-weight: 600;
       padding: 3px 8px;
       border-radius: 6px;
     }
 
-    .app-content {
-      flex: 1;
-      min-width: 0;
-    }
-
     .app-name {
       font-size: 16px;
       font-weight: 600;
-      color: var(--text-primary);
       margin-bottom: 4px;
     }
 
     .app-description {
       font-size: 13px;
-      color: var(--text-secondary);
+      color: #6b6b6b;
       line-height: 1.5;
     }
 
-    /* Icon Gradients */
-    .icon-pink { background: linear-gradient(135deg, #ffb3ba 0%, #ff8a9b 100%); }
-    .icon-purple { background: linear-gradient(135deg, #c3aed6 0%, #9b7fc7 100%); }
-    .icon-green { background: linear-gradient(135deg, #98d9a8 0%, #5cb85c 100%); }
-    .icon-orange { background: linear-gradient(135deg, #ffcc80 0%, #ff9800 100%); }
-    .icon-blue { background: linear-gradient(135deg, #a8d4ff 0%, #64b5f6 100%); }
+    /* Icon Colors */
+    .icon-pink { background: linear-gradient(135deg, #ffb3ba, #ff8a9b); }
+    .icon-purple { background: linear-gradient(135deg, #c3aed6, #9b7fc7); }
+    .icon-green { background: linear-gradient(135deg, #98d9a8, #5cb85c); }
+    .icon-orange { background: linear-gradient(135deg, #ffcc80, #ff9800); }
+    .icon-blue { background: linear-gradient(135deg, #a8d4ff, #64b5f6); }
 
     /* Empty State */
     .empty-state {
       text-align: center;
       padding: 60px 20px;
-      color: var(--text-secondary);
+      color: #6b6b6b;
       display: none;
     }
 
@@ -447,33 +350,37 @@
         display: none;
       }
 
-      .main {
-        margin-left: 0;
-        padding: 24px 16px;
+      .main-content {
+        padding-left: 0;
       }
 
-      .nav-search {
+      .apps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search-box {
         display: none;
       }
 
       .page-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 16px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <div class="nav-container">
-      <a href="#" class="nav-logo">
-        <div class="nav-logo-icon">⚡</div>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">⚡</div>
         Tools Hub
       </a>
       
-      <div class="nav-search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"></circle>
           <path d="m21 21-4.3-4.3"></path>
         </svg>
@@ -482,21 +389,16 @@
 
       <div class="nav-links">
         <a href="#" class="nav-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
             <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
           </svg>
           Contributors
         </a>
         <a href="#" class="nav-link nav-link-primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
             <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
-            <line x1="6" y1="1" x2="6" y2="4"/>
-            <line x1="10" y1="1" x2="10" y2="4"/>
-            <line x1="14" y1="1" x2="14" y2="4"/>
           </svg>
           Buy Us Coffee
         </a>
@@ -504,36 +406,28 @@
     </div>
   </nav>
 
-  <div class="layout">
-    <!-- Sidebar -->
+  <div class="container">
     <aside class="sidebar">
-      <nav class="sidebar-nav">
-        <button class="sidebar-link" data-filter="all">
-          <span class="icon">✏️</span> Discover
-        </button>
-        <button class="sidebar-link active" data-filter="all">
-          <span class="icon">◆</span> All apps
-        </button>
-        <button class="sidebar-link" data-filter="productivity">
-          Productivity
-        </button>
-        <button class="sidebar-link" data-filter="design">
-          Design
-        </button>
-        <button class="sidebar-link" data-filter="life">
-          Life
-        </button>
-      </nav>
+      <button class="sidebar-link" data-filter="all">
+        <span class="icon">✏️</span>Discover
+      </button>
+      <button class="sidebar-link active" data-filter="all">
+        <span class="icon">◆</span>All apps
+      </button>
+      <button class="sidebar-link" data-filter="productivity">
+        Productivity
+      </button>
+      <button class="sidebar-link" data-filter="design">
+        Design
+      </button>
+      <button class="sidebar-link" data-filter="life">
+        Life
+      </button>
     </aside>
 
-    <!-- Main Content -->
-    <main class="main">
+    <main class="main-content">
       <div class="breadcrumb">
-        <a href="#">Home</a>
-        <span>›</span>
-        <a href="#">Marketplace</a>
-        <span>›</span>
-        <span>All apps</span>
+        <a href="#">Home</a> › <a href="#">Marketplace</a> › All apps
       </div>
 
       <div class="page-header">
@@ -646,42 +540,26 @@
       emptyState.classList.toggle('visible', visibleCount === 0);
     }
 
-    // Sidebar filter
     sidebarLinks.forEach(link => {
       link.addEventListener('click', () => {
         sidebarLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
         activeFilter = link.dataset.filter;
-        
-        // Sync filter pills
-        filterPills.forEach(p => {
-          p.classList.toggle('active', p.dataset.filter === activeFilter);
-        });
-        
+        filterPills.forEach(p => p.classList.toggle('active', p.dataset.filter === activeFilter));
         filterCards();
       });
     });
 
-    // Filter pills
     filterPills.forEach(pill => {
       pill.addEventListener('click', () => {
         filterPills.forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
         activeFilter = pill.dataset.filter;
-        
-        // Sync sidebar (select "All apps" for "all", otherwise match category)
-        sidebarLinks.forEach(l => {
-          l.classList.remove('active');
-          if (l.dataset.filter === activeFilter) {
-            l.classList.add('active');
-          }
-        });
-        
+        sidebarLinks.forEach(l => l.classList.toggle('active', l.dataset.filter === activeFilter));
         filterCards();
       });
     });
 
-    // Sort buttons
     sortBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         sortBtns.forEach(b => b.classList.remove('active'));
@@ -689,16 +567,7 @@
       });
     });
 
-    // Search
     searchInput.addEventListener('input', filterCards);
-
-    // Card clicks
-    appCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const toolName = card.querySelector('.app-name').textContent;
-        console.log(`Clicked: ${toolName}`);
-      });
-    });
   </script>
 </body>
 </html>
