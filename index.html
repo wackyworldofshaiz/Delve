@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tools Hub</title>
+  <title>Delve</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -50,13 +50,8 @@
     .logo-icon {
       width: 36px;
       height: 36px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 18px;
+      object-fit: contain;
     }
 
     .search-box {
@@ -207,10 +202,12 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #e8e8e8;
     }
 
     .page-title {
-      font-size: 32px;
+      font-size: 42px;
       font-weight: 700;
     }
 
@@ -241,6 +238,7 @@
     .filter-pills {
       display: flex;
       gap: 8px;
+      margin-top: 8px;
       margin-bottom: 32px;
     }
 
@@ -248,20 +246,19 @@
       padding: 8px 16px;
       font-size: 14px;
       color: #1a1a1a;
-      background: #ffffff;
-      border: 1px solid #e8e8e8;
+      background: #f5f5f5;
+      border: none;
       border-radius: 8px;
       cursor: pointer;
       font-family: inherit;
     }
 
     .filter-pill:hover {
-      background: #f8f8f8;
+      background: #ebebeb;
     }
 
     .filter-pill.active {
-      background: #f8f8f8;
-      border-color: #d0d0d0;
+      background: #e8e8e8;
     }
 
     /* Apps Grid */
@@ -299,6 +296,12 @@
       font-size: 28px;
       position: relative;
       flex-shrink: 0;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .app-card:hover .app-icon {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 
     .app-badge {
@@ -375,8 +378,8 @@
   <nav class="navbar">
     <div class="navbar-inner">
       <a href="#" class="logo">
-        <div class="logo-icon">⚡</div>
-        Tools Hub
+        <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/delve.png" alt="Delve" class="logo-icon">
+        Delve
       </a>
       
       <div class="search-box">
@@ -408,9 +411,6 @@
 
   <div class="container">
     <aside class="sidebar">
-      <button class="sidebar-link" data-filter="all">
-        <span class="icon">✏️</span>Discover
-      </button>
       <button class="sidebar-link active" data-filter="all">
         <span class="icon">◆</span>All apps
       </button>
