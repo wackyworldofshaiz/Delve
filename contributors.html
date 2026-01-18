@@ -145,7 +145,69 @@
       margin: 0 auto;
     }
 
-    /* Contributors Section */
+    /* Team Intro Section */
+    .team-intro {
+      padding: 60px 32px 80px;
+      background: #ffffff;
+    }
+
+    .team-intro-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .team-intro-image {
+      width: 100%;
+      max-width: 600px;
+      height: 350px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .team-intro-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-intro-placeholder {
+      font-size: 64px;
+      opacity: 0.5;
+    }
+
+    .team-intro-text {
+      text-align: center;
+      max-width: 650px;
+    }
+
+    .team-intro-text h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+    }
+
+    .team-intro-text p {
+      font-size: 16px;
+      color: #4a4a4a;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .team-intro-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Individual Contributors Section */
     .contributors {
       padding: 80px 32px;
       max-width: 1000px;
@@ -409,6 +471,14 @@
         font-size: 16px;
       }
 
+      .team-intro-image {
+        height: 250px;
+      }
+
+      .team-intro-text h2 {
+        font-size: 24px;
+      }
+
       .contributor-card {
         flex-direction: column !important;
         text-align: center;
@@ -514,7 +584,26 @@
     <p class="hero-subtitle">Just two friends building tools to make everyday life a little easier.</p>
   </section>
 
-  <!-- Contributors Section -->
+  <!-- Team Intro Section -->
+  <section class="team-intro">
+    <div class="team-intro-inner">
+      <div class="team-intro-image">
+        <!-- Replace with actual image: <img src="your-team-photo.jpg" alt="The Delve Team"> -->
+        <span class="team-intro-placeholder">📸</span>
+      </div>
+      <div class="team-intro-text">
+        <h2>Our Story</h2>
+        <p>
+          Write your story here. How did you two meet? What inspired you to start building tools together? What problem were you trying to solve when you started Delve?
+        </p>
+        <p>
+          Add more about your mission, your values, or what makes your approach different. This is your chance to connect with visitors on a personal level.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Individual Contributors Section -->
   <section class="contributors">
     <!-- Contributor 1 -->
     <div class="contributor-card">
