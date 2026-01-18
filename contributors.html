@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contributors - Delve</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e8e8e8;
+      padding: 16px 32px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-link {
+      color: #6b6b6b;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link:hover {
+      color: #1a1a1a;
+    }
+
+    .nav-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .nav-link.active {
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+
+    .nav-cta {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-cta svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .burger-menu {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .burger-menu span {
+      width: 24px;
+      height: 2px;
+      background: #1a1a1a;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 32px;
+      text-align: center;
+      background: linear-gradient(180deg, #f8f8f8 0%, #ffffff 100%);
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: #6b6b6b;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Contributors Section */
+    .contributors {
+      padding: 80px 32px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .contributor-card {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      padding: 48px;
+      background: #f8f8f8;
+      border-radius: 24px;
+      margin-bottom: 32px;
+    }
+
+    .contributor-card:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .contributor-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      flex-shrink: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contributor-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .contributor-image-placeholder {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 48px;
+    }
+
+    .contributor-content {
+      flex: 1;
+    }
+
+    .contributor-name {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .contributor-role {
+      font-size: 14px;
+      font-weight: 600;
+      color: #6b6b6b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .contributor-bio {
+      font-size: 16px;
+      color: #4a4a4a;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .contributor-socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #1a1a1a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .social-link:hover {
+      transform: translateY(-2px);
+      background: #333;
+    }
+
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Footer CTA */
+    .footer-cta {
+      padding: 100px 32px;
+      background: #f8f8f8;
+      text-align: center;
+    }
+
+    .footer-cta-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+    }
+
+    .footer-cta-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .footer-cta-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    .footer-cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-dark {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-dark:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Mobile Navigation */
+    .mobile-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 998;
+    }
+
+    .mobile-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 100%;
+      background: #ffffff;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 999;
+      padding: 24px;
+    }
+
+    .mobile-nav.open {
+      transform: translateX(0);
+    }
+
+    .mobile-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .mobile-nav-close {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 20px;
+      color: #1a1a1a;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #1a1a1a;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.2s ease;
+    }
+
+    .mobile-nav-link:hover {
+      background: #f5f5f5;
+    }
+
+    .mobile-nav-link svg {
+      width: 20px;
+      height: 20px;
+      color: #6b6b6b;
+    }
+
+    .mobile-nav-cta {
+      display: block;
+      margin-top: 24px;
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none !important;
+      }
+
+      .burger-menu {
+        display: flex !important;
+      }
+
+      .hero-title {
+        font-size: 32px;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+
+      .contributor-card {
+        flex-direction: column !important;
+        text-align: center;
+        padding: 32px;
+        gap: 24px;
+      }
+
+      .contributor-image {
+        width: 150px;
+        height: 150px;
+      }
+
+      .contributor-socials {
+        justify-content: center;
+      }
+
+      .footer-cta-title {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/delve.png" alt="Delve">
+      </a>
+
+      <div class="nav-links">
+        <a href="tools-marketplace.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          Marketplace
+        </a>
+        <a href="contributors.html" class="nav-link active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+          </svg>
+          Contributors
+        </a>
+        <a href="https://dezigntherapy.gumroad.com/coffee" class="nav-cta" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+          </svg>
+          Buy Us Coffee
+        </a>
+      </div>
+
+      <button class="burger-menu" id="burgerMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-header">
+      <span style="font-weight: 600;">Menu</span>
+      <button class="mobile-nav-close" id="mobileNavClose">×</button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="tools-marketplace.html" class="mobile-nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"/>
+          <rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/>
+        </svg>
+        Marketplace
+      </a>
+      <a href="contributors.html" class="mobile-nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+        </svg>
+        Contributors
+      </a>
+    </div>
+    <a href="https://dezigntherapy.gumroad.com/coffee" class="mobile-nav-cta" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; display: inline; vertical-align: middle; margin-right: 8px;">
+        <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+      </svg>
+      Buy Us Coffee
+    </a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 class="hero-title">Meet the team</h1>
+    <p class="hero-subtitle">Just two friends building tools to make everyday life a little easier.</p>
+  </section>
+
+  <!-- Contributors Section -->
+  <section class="contributors">
+    <!-- Contributor 1 -->
+    <div class="contributor-card">
+      <div class="contributor-image">
+        <!-- Replace with actual image: <img src="your-image.jpg" alt="Name"> -->
+        <span class="contributor-image-placeholder">👤</span>
+      </div>
+      <div class="contributor-content">
+        <h2 class="contributor-name">Your Name</h2>
+        <p class="contributor-role">Co-founder</p>
+        <p class="contributor-bio">
+          Write a bit about yourself here. What drives you to build these tools? What's your background? What do you do when you're not coding?
+        </p>
+        <div class="contributor-socials">
+          <a href="#" class="social-link" title="Twitter/X">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contributor 2 -->
+    <div class="contributor-card">
+      <div class="contributor-image">
+        <!-- Replace with actual image: <img src="your-image.jpg" alt="Name"> -->
+        <span class="contributor-image-placeholder">👤</span>
+      </div>
+      <div class="contributor-content">
+        <h2 class="contributor-name">Friend's Name</h2>
+        <p class="contributor-role">Co-founder</p>
+        <p class="contributor-bio">
+          Write a bit about your friend here. What's their story? What skills do they bring to the table? What are they passionate about?
+        </p>
+        <div class="contributor-socials">
+          <a href="#" class="social-link" title="Twitter/X">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="footer-cta">
+    <div class="footer-cta-icon">
+      <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/delve.png" alt="Delve">
+    </div>
+    <h2 class="footer-cta-title">Like what we're building?</h2>
+    <div class="footer-cta-buttons">
+      <a href="https://dezigntherapy.gumroad.com/coffee" class="btn-dark" target="_blank">Buy Us Coffee ☕</a>
+    </div>
+  </section>
+
+  <script>
+    // Mobile menu functionality
+    const burgerMenu = document.getElementById('burgerMenu');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const mobileNavClose = document.getElementById('mobileNavClose');
+
+    function openMobileMenu() {
+      mobileNav.classList.add('open');
+      mobileOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      mobileNav.classList.remove('open');
+      mobileOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    burgerMenu.addEventListener('click', openMobileMenu);
+    mobileNavClose.addEventListener('click', closeMobileMenu);
+    mobileOverlay.addEventListener('click', closeMobileMenu);
+  </script>
+</body>
+</html>
