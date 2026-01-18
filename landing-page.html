@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delve - Your Notion Tools Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 16px 32px;
+    }
+
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .nav-link:hover {
+      opacity: 1;
+    }
+
+    .nav-cta {
+      background: #ffffff;
+      color: #1a1a1a;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    }
+
+    .burger-menu {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .burger-menu span {
+      width: 24px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 32px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Floating Badges */
+    .floating-badge {
+      position: absolute;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+      transform: rotate(var(--rotation, 0deg));
+      animation: float 6s ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+      white-space: nowrap;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: rotate(var(--rotation, 0deg)) translateY(0); }
+      50% { transform: rotate(var(--rotation, 0deg)) translateY(-15px); }
+    }
+
+    .badge-1 { --rotation: -15deg; --delay: 0s; top: 20%; left: 5%; background: #ffd6e0; }
+    .badge-2 { --rotation: 10deg; --delay: 1s; top: 35%; left: 8%; background: #d4f0d4; }
+    .badge-3 { --rotation: -5deg; --delay: 0.5s; top: 50%; left: 3%; background: #fff3d4; }
+    .badge-4 { --rotation: 8deg; --delay: 1.5s; top: 65%; left: 6%; background: #e0e7ff; }
+    .badge-5 { --rotation: 15deg; --delay: 0.3s; top: 18%; right: 5%; background: #ffe4cc; }
+    .badge-6 { --rotation: -8deg; --delay: 0.8s; top: 33%; right: 7%; background: #d4e8ff; }
+    .badge-7 { --rotation: 12deg; --delay: 1.2s; top: 48%; right: 4%; background: #f0d4ff; }
+    .badge-8 { --rotation: -10deg; --delay: 2s; top: 63%; right: 8%; background: #d4fff0; }
+
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      z-index: 10;
+    }
+
+    .hero-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 32px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .hero-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .hero-title {
+      font-size: 56px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 40px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #1a1a1a;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #ffffff;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .hero-note {
+      margin-top: 24px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 100px 32px;
+      background: #ffffff;
+    }
+
+    .features-header {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .features-title {
+      font-size: 42px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .features-subtitle {
+      font-size: 16px;
+      color: #6b6b6b;
+      max-width: 400px;
+    }
+
+    .features-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: #f8f8f8;
+      border-radius: 24px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-card.dark {
+      background: #1a1a1a;
+      color: #ffffff;
+    }
+
+    .feature-card.dark .feature-title,
+    .feature-card.dark .feature-desc {
+      color: #ffffff;
+    }
+
+    .feature-card.dark .feature-desc {
+      opacity: 0.7;
+    }
+
+    .feature-content {
+      padding: 32px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .feature-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .feature-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .feature-desc {
+      font-size: 15px;
+      color: #6b6b6b;
+      line-height: 1.5;
+    }
+
+    .feature-image {
+      width: 100%;
+      height: 280px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-image img {
+      width: 90%;
+      height: 90%;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .feature-image-placeholder {
+      width: 80%;
+      height: 70%;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 14px;
+    }
+
+    .feature-card.image-top .feature-image {
+      order: -1;
+    }
+
+    .view-all-link {
+      max-width: 1200px;
+      margin: 48px auto 0;
+      text-align: center;
+    }
+
+    .view-all-link a {
+      color: #1a1a1a;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      transition: gap 0.2s;
+    }
+
+    .view-all-link a:hover {
+      gap: 12px;
+    }
+
+    /* Journey Section */
+    .journey {
+      padding: 100px 32px;
+      background: #f8f8f8;
+    }
+
+    .journey-header {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .journey-title {
+      font-size: 42px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .journey-subtitle {
+      font-size: 16px;
+      color: #6b6b6b;
+      max-width: 400px;
+    }
+
+    .journey-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .journey-steps {
+      display: flex;
+      gap: 60px;
+    }
+
+    .journey-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #6b6b6b;
+    }
+
+    .journey-step-icon {
+      width: 32px;
+      height: 32px;
+      background: #1a1a1a;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 14px;
+    }
+
+    .journey-mockup {
+      flex: 1;
+      max-width: 600px;
+      position: relative;
+    }
+
+    .journey-mockup-image {
+      width: 100%;
+      height: 400px;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .journey-mockup-placeholder {
+      color: rgba(0, 0, 0, 0.3);
+      font-size: 14px;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      padding: 100px 32px;
+      background: #1a1a1a;
+    }
+
+    .testimonials-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background: linear-gradient(135deg, #8b5a8b 0%, #6b4d6b 100%);
+      border-radius: 24px;
+      padding: 60px;
+      display: flex;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-content {
+      flex: 1;
+    }
+
+    .testimonial-quote {
+      font-size: 28px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.4;
+      margin-bottom: 32px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .testimonial-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .testimonial-role {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .testimonial-image {
+      width: 300px;
+      height: 300px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+
+    .testimonial-play {
+      position: absolute;
+      bottom: 60px;
+      left: 60px;
+      width: 56px;
+      height: 56px;
+      background: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .testimonial-play:hover {
+      transform: scale(1.1);
+    }
+
+    .testimonial-play svg {
+      width: 20px;
+      height: 20px;
+      margin-left: 3px;
+    }
+
+    .testimonial-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .testimonial-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .testimonial-dot.active {
+      background: #ffffff;
+    }
+
+    .testimonial-arrows {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .testimonial-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      transition: background 0.2s;
+    }
+
+    .testimonial-arrow:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Footer CTA */
+    .footer-cta {
+      padding: 100px 32px;
+      background: #f8f8f8;
+      text-align: center;
+    }
+
+    .footer-cta-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+    }
+
+    .footer-cta-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .footer-cta-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    .footer-cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-dark {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-dark:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #1a1a1a;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      border: 1px solid #d0d0d0;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: #1a1a1a;
+      color: #ffffff;
+      border-color: #1a1a1a;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .burger-menu {
+        display: flex;
+      }
+
+      .hero-title {
+        font-size: 36px;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+
+      .floating-badge {
+        display: none;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-title,
+      .journey-title,
+      .footer-cta-title {
+        font-size: 32px;
+      }
+
+      .journey-content {
+        flex-direction: column;
+      }
+
+      .journey-steps {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .testimonial-card {
+        flex-direction: column;
+        padding: 40px 24px;
+      }
+
+      .testimonial-quote {
+        font-size: 20px;
+      }
+
+      .testimonial-image {
+        width: 100%;
+        height: 200px;
+      }
+
+      .testimonial-play {
+        bottom: auto;
+        top: 40px;
+        left: 24px;
+      }
+    }
+
+    /* Mobile Navigation */
+    .mobile-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 998;
+    }
+
+    .mobile-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 100%;
+      background: #1a1a1a;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 999;
+      padding: 24px;
+    }
+
+    .mobile-nav.open {
+      transform: translateX(0);
+    }
+
+    .mobile-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .mobile-nav-close {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mobile-nav-link {
+      display: block;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.2s ease;
+    }
+
+    .mobile-nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-nav-cta {
+      display: block;
+      margin-top: 24px;
+      background: #ffffff;
+      color: #1a1a1a;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="#" class="nav-logo">
+        <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/delve.png" alt="Delve">
+      </a>
+
+      <div class="nav-links">
+        <a href="tools-marketplace.html" class="nav-link">Marketplace</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="https://dezigntherapy.gumroad.com/coffee" class="nav-cta" target="_blank">Buy Us Coffee</a>
+      </div>
+
+      <button class="burger-menu" id="burgerMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-header">
+      <span style="font-weight: 600; color: #fff;">Menu</span>
+      <button class="mobile-nav-close" id="mobileNavClose">×</button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="tools-marketplace.html" class="mobile-nav-link">Marketplace</a>
+      <a href="#features" class="mobile-nav-link">Features</a>
+      <a href="#" class="mobile-nav-link">About</a>
+    </div>
+    <a href="https://dezigntherapy.gumroad.com/coffee" class="mobile-nav-cta" target="_blank">Buy Us Coffee</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <!-- Floating Badges -->
+    <div class="floating-badge badge-1">📅 PLAN PTO</div>
+    <div class="floating-badge badge-2">🔍 OCR TEXT</div>
+    <div class="floating-badge badge-3">✅ BATCH CHECK</div>
+    <div class="floating-badge badge-4">🎨 DESIGN</div>
+    <div class="floating-badge badge-5">🎤 SPEAK</div>
+    <div class="floating-badge badge-6">📊 ANALYZE</div>
+    <div class="floating-badge badge-7">🚀 AUTOMATE</div>
+    <div class="floating-badge badge-8">💡 CREATE</div>
+
+    <div class="hero-content">
+      <div class="hero-icon">
+        <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/delve.png" alt="Delve">
+      </div>
+      
+      <h1 class="hero-title">
+        Powerful Notion tools.<br>
+        <span>One marketplace.</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        Supercharge your Notion workspace with curated tools built by the community, for the community.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="tools-marketplace.html" class="btn-primary">
+          Browse Tools →
+        </a>
+        <a href="#features" class="btn-secondary">
+          Learn More
+        </a>
+      </div>
+
+      <p class="hero-note">Free to use. Community driven.</p>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="features-header">
+      <h2 class="features-title">What you get with Delve.</h2>
+      <p class="features-subtitle">Discover tools that enhance your Notion workflow and boost productivity.</p>
+    </div>
+
+    <div class="features-grid">
+      <!-- Feature 1 -->
+      <div class="feature-card">
+        <div class="feature-content">
+          <div class="feature-icon">
+            <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/1.avif" alt="PTO Planner">
+          </div>
+          <h3 class="feature-title">Plan your time off</h3>
+          <p class="feature-desc">Track and manage your paid time off with ease. Never miss a vacation day again.</p>
+        </div>
+        <div class="feature-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+          <div class="feature-image-placeholder">Tool Preview</div>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-card dark">
+        <div class="feature-content">
+          <div class="feature-icon">
+            <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/2.avif" alt="Image Text Scraper">
+          </div>
+          <h3 class="feature-title">Extract text from images</h3>
+          <p class="feature-desc">Use OCR technology to pull text from any image directly into your Notion workspace.</p>
+        </div>
+        <div class="feature-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+          <div class="feature-image-placeholder">Tool Preview</div>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="feature-card dark image-top">
+        <div class="feature-image" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+          <div class="feature-image-placeholder">Tool Preview</div>
+        </div>
+        <div class="feature-content">
+          <div class="feature-icon">
+            <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/3.avif" alt="Tie Batch Checker">
+          </div>
+          <h3 class="feature-title">Validate batches</h3>
+          <p class="feature-desc">Check and validate your data batches efficiently with automated verification.</p>
+        </div>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="feature-card image-top">
+        <div class="feature-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+          <div class="feature-image-placeholder">Tool Preview</div>
+        </div>
+        <div class="feature-content">
+          <div class="feature-icon">
+            <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/4.avif" alt="Designer Co-Pilot">
+          </div>
+          <h3 class="feature-title">Design with AI</h3>
+          <p class="feature-desc">Get AI-powered design assistance for your creative projects and workflows.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-all-link">
+      <a href="tools-marketplace.html">→ View all tools</a>
+    </div>
+  </section>
+
+  <!-- Journey Section -->
+  <section class="journey">
+    <div class="journey-header">
+      <h2 class="journey-title">Your Delve journey.</h2>
+      <p class="journey-subtitle">Find the perfect tool for your task and get instant recommendations.</p>
+    </div>
+
+    <div class="journey-content">
+      <div class="journey-steps">
+        <div class="journey-step">
+          <div class="journey-step-icon">✏️</div>
+          <span>Browse by category</span>
+        </div>
+        <div class="journey-step">
+          <div class="journey-step-icon">⚡</div>
+          <span>Explore tools</span>
+        </div>
+        <div class="journey-step">
+          <div class="journey-step-icon">👍</div>
+          <span>Use & enjoy</span>
+        </div>
+      </div>
+
+      <div class="journey-mockup">
+        <div class="journey-mockup-image">
+          <span class="journey-mockup-placeholder">Marketplace Preview</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="testimonials-container">
+      <div class="testimonial-card">
+        <div class="testimonial-arrows">
+          <button class="testimonial-arrow">‹</button>
+          <button class="testimonial-arrow">›</button>
+        </div>
+
+        <div class="testimonial-content">
+          <p class="testimonial-quote">
+            "Delve has transformed the way I work with Notion. The tools are incredibly well-designed and save me hours every week."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar"></div>
+            <div>
+              <div class="testimonial-name">Sarah Chen</div>
+              <div class="testimonial-role">Product Designer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-image"></div>
+
+        <div class="testimonial-play">
+          <svg viewBox="0 0 24 24" fill="#1a1a1a">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="testimonial-nav">
+        <div class="testimonial-dot active"></div>
+        <div class="testimonial-dot"></div>
+        <div class="testimonial-dot"></div>
+        <div class="testimonial-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="footer-cta">
+    <div class="footer-cta-icon">
+      <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/delve.png" alt="Delve">
+    </div>
+    <h2 class="footer-cta-title">Ready to supercharge your Notion?</h2>
+    <div class="footer-cta-buttons">
+      <a href="tools-marketplace.html" class="btn-dark">Get started now</a>
+      <a href="#features" class="btn-outline">Learn more</a>
+    </div>
+  </section>
+
+  <script>
+    // Mobile menu functionality
+    const burgerMenu = document.getElementById('burgerMenu');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const mobileNavClose = document.getElementById('mobileNavClose');
+
+    function openMobileMenu() {
+      mobileNav.classList.add('open');
+      mobileOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      mobileNav.classList.remove('open');
+      mobileOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    burgerMenu.addEventListener('click', openMobileMenu);
+    mobileNavClose.addEventListener('click', closeMobileMenu);
+    mobileOverlay.addEventListener('click', closeMobileMenu);
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          closeMobileMenu();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
