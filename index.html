@@ -412,94 +412,6 @@
       gap: 12px;
     }
 
-    /* Journey Section */
-    .journey {
-      padding: 100px 32px;
-      background: #f8f8f8;
-    }
-
-    .journey-header {
-      max-width: 1200px;
-      margin: 0 auto 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 24px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    .journey-title {
-      font-size: 42px;
-      font-weight: 700;
-      color: #1a1a1a;
-    }
-
-    .journey-subtitle {
-      font-size: 16px;
-      color: #6b6b6b;
-      max-width: 400px;
-    }
-
-    .journey-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 60px;
-      flex-wrap: wrap;
-    }
-
-    .journey-steps {
-      display: flex;
-      gap: 60px;
-    }
-
-    .journey-step {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 15px;
-      font-weight: 500;
-      color: #6b6b6b;
-    }
-
-    .journey-step-icon {
-      width: 32px;
-      height: 32px;
-      background: #1a1a1a;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-size: 14px;
-    }
-
-    .journey-mockup {
-      flex: 1;
-      max-width: 600px;
-      position: relative;
-    }
-
-    .journey-mockup-image {
-      width: 100%;
-      height: 400px;
-      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    }
-
-    .journey-mockup-placeholder {
-      color: rgba(0, 0, 0, 0.3);
-      font-size: 14px;
-    }
-
     /* Testimonials Section */
     .testimonials {
       padding: 100px 32px;
@@ -604,7 +516,11 @@
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.3);
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .testimonial-dot:hover {
+      transform: scale(1.2);
     }
 
     .testimonial-dot.active {
@@ -730,18 +646,8 @@
       }
 
       .features-title,
-      .journey-title,
       .footer-cta-title {
         font-size: 32px;
-      }
-
-      .journey-content {
-        flex-direction: column;
-      }
-
-      .journey-steps {
-        flex-direction: column;
-        gap: 24px;
       }
 
       .testimonial-card {
@@ -1050,73 +956,36 @@
     </div>
   </section>
 
-  <!-- Journey Section -->
-  <section class="journey">
-    <div class="journey-header">
-      <h2 class="journey-title">How it works.</h2>
-      <p class="journey-subtitle">Browse our collection, find what you need, and start saving time today.</p>
-    </div>
-
-    <div class="journey-content">
-      <div class="journey-steps">
-        <div class="journey-step">
-          <div class="journey-step-icon">1</div>
-          <span>Browse tools</span>
-        </div>
-        <div class="journey-step">
-          <div class="journey-step-icon">2</div>
-          <span>Pick what you need</span>
-        </div>
-        <div class="journey-step">
-          <div class="journey-step-icon">3</div>
-          <span>Get stuff done</span>
-        </div>
-      </div>
-
-      <div class="journey-mockup">
-        <div class="journey-mockup-image">
-          <span class="journey-mockup-placeholder">Marketplace Preview</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Testimonials Section -->
   <section class="testimonials">
     <div class="testimonials-container">
       <div class="testimonial-card">
         <div class="testimonial-arrows">
-          <button class="testimonial-arrow">‹</button>
-          <button class="testimonial-arrow">›</button>
+          <button class="testimonial-arrow" id="prevTestimonial">‹</button>
+          <button class="testimonial-arrow" id="nextTestimonial">›</button>
         </div>
 
         <div class="testimonial-content">
-          <p class="testimonial-quote">
+          <p class="testimonial-quote" id="testimonialQuote">
             "These tools have genuinely made my daily workflow so much smoother. It's clear they were built by people who understand the pain of repetitive tasks."
           </p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar"></div>
+            <div class="testimonial-avatar" id="testimonialAvatar"></div>
             <div>
-              <div class="testimonial-name">Early User</div>
-              <div class="testimonial-role">Productivity Enthusiast</div>
+              <div class="testimonial-name" id="testimonialName">Early User</div>
+              <div class="testimonial-role" id="testimonialRole">Productivity Enthusiast</div>
             </div>
           </div>
         </div>
 
         <div class="testimonial-image"></div>
-
-        <div class="testimonial-play">
-          <svg viewBox="0 0 24 24" fill="#1a1a1a">
-            <path d="M8 5v14l11-7z"/>
-          </svg>
-        </div>
       </div>
 
-      <div class="testimonial-nav">
-        <div class="testimonial-dot active"></div>
-        <div class="testimonial-dot"></div>
-        <div class="testimonial-dot"></div>
-        <div class="testimonial-dot"></div>
+      <div class="testimonial-nav" id="testimonialNav">
+        <div class="testimonial-dot active" data-index="0"></div>
+        <div class="testimonial-dot" data-index="1"></div>
+        <div class="testimonial-dot" data-index="2"></div>
+        <div class="testimonial-dot" data-index="3"></div>
       </div>
     </div>
   </section>
@@ -1166,6 +1035,94 @@
         }
       });
     });
+
+    // Testimonial Carousel
+    const testimonials = [
+      {
+        quote: "These tools have genuinely made my daily workflow so much smoother. It's clear they were built by people who understand the pain of repetitive tasks.",
+        name: "Early User",
+        role: "Productivity Enthusiast",
+        avatar: ""
+      },
+      {
+        quote: "Finally, tools that actually solve real problems. No fluff, just practical solutions that save me hours every week.",
+        name: "Alex M.",
+        role: "Freelance Designer",
+        avatar: ""
+      },
+      {
+        quote: "I love that these are made by real people solving their own problems. You can tell the difference in quality and thoughtfulness.",
+        name: "Jordan K.",
+        role: "Small Business Owner",
+        avatar: ""
+      },
+      {
+        quote: "Simple, effective, and actually useful. These tools have become essential parts of my daily routine.",
+        name: "Sam T.",
+        role: "Remote Worker",
+        avatar: ""
+      }
+    ];
+
+    let currentTestimonial = 0;
+    const testimonialQuote = document.getElementById('testimonialQuote');
+    const testimonialName = document.getElementById('testimonialName');
+    const testimonialRole = document.getElementById('testimonialRole');
+    const testimonialDots = document.querySelectorAll('.testimonial-dot');
+    const prevBtn = document.getElementById('prevTestimonial');
+    const nextBtn = document.getElementById('nextTestimonial');
+
+    function updateTestimonial(index) {
+      currentTestimonial = index;
+      const t = testimonials[index];
+      
+      // Fade out
+      testimonialQuote.style.opacity = 0;
+      testimonialName.style.opacity = 0;
+      testimonialRole.style.opacity = 0;
+      
+      setTimeout(() => {
+        testimonialQuote.textContent = `"${t.quote}"`;
+        testimonialName.textContent = t.name;
+        testimonialRole.textContent = t.role;
+        
+        // Fade in
+        testimonialQuote.style.opacity = 1;
+        testimonialName.style.opacity = 1;
+        testimonialRole.style.opacity = 1;
+      }, 200);
+
+      // Update dots
+      testimonialDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextTestimonial() {
+      const next = (currentTestimonial + 1) % testimonials.length;
+      updateTestimonial(next);
+    }
+
+    function prevTestimonial() {
+      const prev = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+      updateTestimonial(prev);
+    }
+
+    // Event listeners
+    nextBtn.addEventListener('click', nextTestimonial);
+    prevBtn.addEventListener('click', prevTestimonial);
+
+    testimonialDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => updateTestimonial(index));
+    });
+
+    // Auto-rotate every 5 seconds
+    setInterval(nextTestimonial, 5000);
+
+    // Add transition styles
+    testimonialQuote.style.transition = 'opacity 0.2s ease';
+    testimonialName.style.transition = 'opacity 0.2s ease';
+    testimonialRole.style.transition = 'opacity 0.2s ease';
   </script>
 </body>
 </html>
