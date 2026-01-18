@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Delve - Your Notion Tools Marketplace</title>
+  <title>Delve - Tools for Everyday Life</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -67,6 +67,14 @@
       font-weight: 500;
       opacity: 0.8;
       transition: opacity 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link svg {
+      width: 16px;
+      height: 16px;
     }
 
     .nav-link:hover {
@@ -82,6 +90,14 @@
       font-size: 14px;
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-cta svg {
+      width: 16px;
+      height: 16px;
     }
 
     .nav-cta:hover {
@@ -813,7 +829,9 @@
     }
 
     .mobile-nav-link {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       padding: 14px 16px;
       font-size: 16px;
       font-weight: 500;
@@ -821,6 +839,11 @@
       text-decoration: none;
       border-radius: 10px;
       transition: background 0.2s ease;
+    }
+
+    .mobile-nav-link svg {
+      width: 20px;
+      height: 20px;
     }
 
     .mobile-nav-link:hover {
@@ -847,14 +870,33 @@
   <nav class="navbar">
     <div class="navbar-inner">
       <a href="#" class="nav-logo">
-        <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/delve.png" alt="Delve">
+        <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/delvewhite.png" alt="Delve">
       </a>
 
       <div class="nav-links">
-        <a href="tools-marketplace.html" class="nav-link">Marketplace</a>
-        <a href="#features" class="nav-link">Features</a>
-        <a href="#" class="nav-link">About</a>
-        <a href="https://dezigntherapy.gumroad.com/coffee" class="nav-cta" target="_blank">Buy Us Coffee</a>
+        <a href="tools-marketplace.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          Marketplace
+        </a>
+        <a href="#" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+          </svg>
+          Contributors
+        </a>
+        <a href="https://dezigntherapy.gumroad.com/coffee" class="nav-cta" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+          </svg>
+          Buy Us Coffee
+        </a>
       </div>
 
       <button class="burger-menu" id="burgerMenu">
@@ -873,37 +915,56 @@
       <button class="mobile-nav-close" id="mobileNavClose">×</button>
     </div>
     <div class="mobile-nav-links">
-      <a href="tools-marketplace.html" class="mobile-nav-link">Marketplace</a>
-      <a href="#features" class="mobile-nav-link">Features</a>
-      <a href="#" class="mobile-nav-link">About</a>
+      <a href="tools-marketplace.html" class="mobile-nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"/>
+          <rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/>
+        </svg>
+        Marketplace
+      </a>
+      <a href="#" class="mobile-nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+        </svg>
+        Contributors
+      </a>
     </div>
-    <a href="https://dezigntherapy.gumroad.com/coffee" class="mobile-nav-cta" target="_blank">Buy Us Coffee</a>
+    <a href="https://dezigntherapy.gumroad.com/coffee" class="mobile-nav-cta" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; display: inline; vertical-align: middle; margin-right: 8px;">
+        <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+      </svg>
+      Buy Us Coffee
+    </a>
   </div>
 
   <!-- Hero Section -->
   <section class="hero">
     <!-- Floating Badges -->
-    <div class="floating-badge badge-1">📅 PLAN PTO</div>
-    <div class="floating-badge badge-2">🔍 OCR TEXT</div>
-    <div class="floating-badge badge-3">✅ BATCH CHECK</div>
-    <div class="floating-badge badge-4">🎨 DESIGN</div>
-    <div class="floating-badge badge-5">🎤 SPEAK</div>
-    <div class="floating-badge badge-6">📊 ANALYZE</div>
-    <div class="floating-badge badge-7">🚀 AUTOMATE</div>
-    <div class="floating-badge badge-8">💡 CREATE</div>
+    <div class="floating-badge badge-1">⏰ SAVE TIME</div>
+    <div class="floating-badge badge-2">🔄 AUTOMATE</div>
+    <div class="floating-badge badge-3">📈 LEVEL UP</div>
+    <div class="floating-badge badge-4">💼 CAREER</div>
+    <div class="floating-badge badge-5">✨ SIMPLIFY</div>
+    <div class="floating-badge badge-6">🎯 FOCUS</div>
+    <div class="floating-badge badge-7">🚀 PRODUCTIVITY</div>
+    <div class="floating-badge badge-8">💡 SMART WORK</div>
 
     <div class="hero-content">
       <div class="hero-icon">
-        <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/delve.png" alt="Delve">
+        <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/delvewhite.png" alt="Delve">
       </div>
       
       <h1 class="hero-title">
-        Powerful Notion tools.<br>
-        <span>One marketplace.</span>
+        Tools for everyday life.<br>
+        <span>Built by two friends.</span>
       </h1>
       
       <p class="hero-subtitle">
-        Supercharge your Notion workspace with curated tools built by the community, for the community.
+        We're building simple tools to automate tedious tasks and help you level up your professional career.
       </p>
 
       <div class="hero-buttons">
@@ -915,15 +976,15 @@
         </a>
       </div>
 
-      <p class="hero-note">Free to use. Community driven.</p>
+      <p class="hero-note">Made with ❤️ to make your life easier.</p>
     </div>
   </section>
 
   <!-- Features Section -->
   <section class="features" id="features">
     <div class="features-header">
-      <h2 class="features-title">What you get with Delve.</h2>
-      <p class="features-subtitle">Discover tools that enhance your Notion workflow and boost productivity.</p>
+      <h2 class="features-title">What we've built.</h2>
+      <p class="features-subtitle">Simple tools that save you time and help you work smarter, not harder.</p>
     </div>
 
     <div class="features-grid">
@@ -934,7 +995,7 @@
             <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/1.avif" alt="PTO Planner">
           </div>
           <h3 class="feature-title">Plan your time off</h3>
-          <p class="feature-desc">Track and manage your paid time off with ease. Never miss a vacation day again.</p>
+          <p class="feature-desc">Easily track and manage your PTO. No more spreadsheets or awkward email chains.</p>
         </div>
         <div class="feature-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
           <div class="feature-image-placeholder">Tool Preview</div>
@@ -948,7 +1009,7 @@
             <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/2.avif" alt="Image Text Scraper">
           </div>
           <h3 class="feature-title">Extract text from images</h3>
-          <p class="feature-desc">Use OCR technology to pull text from any image directly into your Notion workspace.</p>
+          <p class="feature-desc">Pull text from screenshots, photos, or documents instantly. No more manual typing.</p>
         </div>
         <div class="feature-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
           <div class="feature-image-placeholder">Tool Preview</div>
@@ -965,7 +1026,7 @@
             <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/3.avif" alt="Tie Batch Checker">
           </div>
           <h3 class="feature-title">Validate batches</h3>
-          <p class="feature-desc">Check and validate your data batches efficiently with automated verification.</p>
+          <p class="feature-desc">Automate the boring stuff. Check and verify data without the manual hassle.</p>
         </div>
       </div>
 
@@ -979,36 +1040,36 @@
             <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/4.avif" alt="Designer Co-Pilot">
           </div>
           <h3 class="feature-title">Design with AI</h3>
-          <p class="feature-desc">Get AI-powered design assistance for your creative projects and workflows.</p>
+          <p class="feature-desc">Get a creative co-pilot that helps you design better and faster.</p>
         </div>
       </div>
     </div>
 
     <div class="view-all-link">
-      <a href="tools-marketplace.html">→ View all tools</a>
+      <a href="tools-marketplace.html">→ See all our tools</a>
     </div>
   </section>
 
   <!-- Journey Section -->
   <section class="journey">
     <div class="journey-header">
-      <h2 class="journey-title">Your Delve journey.</h2>
-      <p class="journey-subtitle">Find the perfect tool for your task and get instant recommendations.</p>
+      <h2 class="journey-title">How it works.</h2>
+      <p class="journey-subtitle">Browse our collection, find what you need, and start saving time today.</p>
     </div>
 
     <div class="journey-content">
       <div class="journey-steps">
         <div class="journey-step">
-          <div class="journey-step-icon">✏️</div>
-          <span>Browse by category</span>
+          <div class="journey-step-icon">1</div>
+          <span>Browse tools</span>
         </div>
         <div class="journey-step">
-          <div class="journey-step-icon">⚡</div>
-          <span>Explore tools</span>
+          <div class="journey-step-icon">2</div>
+          <span>Pick what you need</span>
         </div>
         <div class="journey-step">
-          <div class="journey-step-icon">👍</div>
-          <span>Use & enjoy</span>
+          <div class="journey-step-icon">3</div>
+          <span>Get stuff done</span>
         </div>
       </div>
 
@@ -1031,13 +1092,13 @@
 
         <div class="testimonial-content">
           <p class="testimonial-quote">
-            "Delve has transformed the way I work with Notion. The tools are incredibly well-designed and save me hours every week."
+            "These tools have genuinely made my daily workflow so much smoother. It's clear they were built by people who understand the pain of repetitive tasks."
           </p>
           <div class="testimonial-author">
             <div class="testimonial-avatar"></div>
             <div>
-              <div class="testimonial-name">Sarah Chen</div>
-              <div class="testimonial-role">Product Designer</div>
+              <div class="testimonial-name">Early User</div>
+              <div class="testimonial-role">Productivity Enthusiast</div>
             </div>
           </div>
         </div>
@@ -1065,10 +1126,9 @@
     <div class="footer-cta-icon">
       <img src="https://raw.githubusercontent.com/wackyworldofshaiz/Delve/main/images/delve.png" alt="Delve">
     </div>
-    <h2 class="footer-cta-title">Ready to supercharge your Notion?</h2>
+    <h2 class="footer-cta-title">Like what we're building?</h2>
     <div class="footer-cta-buttons">
-      <a href="tools-marketplace.html" class="btn-dark">Get started now</a>
-      <a href="#features" class="btn-outline">Learn more</a>
+      <a href="https://dezigntherapy.gumroad.com/coffee" class="btn-dark" target="_blank">Buy Us Coffee ☕</a>
     </div>
   </section>
 
